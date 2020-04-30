@@ -20,11 +20,16 @@ export class SearchGroceryStoresPage implements OnInit {
  toggleFab(){
         this.fabAction = !this.fabAction;
    }
-  toggleFab2(){
+ toggleFab2(){
         this.fabAction2 = !this.fabAction2;
    }
 	
-
+ height_weight_lenght() {
+    this.route.navigate(['./height-weight-lenght']);
+  } 
+ proceed_to_payment() {
+    this.route.navigate(['./payment']);
+  } 
  deliverymode(){
     this.modalController.create({component:DeliverymodePage}).then((modalElement)=>
     {
@@ -32,8 +37,4 @@ export class SearchGroceryStoresPage implements OnInit {
     }
     )
   }
- proceed_to_payment() {
-    this.route.navigate(['./payment']);
-  } 
-
 }

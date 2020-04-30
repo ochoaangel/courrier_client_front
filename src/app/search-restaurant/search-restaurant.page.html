@@ -4,10 +4,11 @@
 			<ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
 		</ion-buttons>
 		<ion-title>
-			<span *ngIf="tab == 'pickup_location'">{{'search_restaurant' | translate}}</span>
+			<!-- <span *ngIf="tab == 'pickup_location'">{{'pickup_location' | translate}}</span> -->
+			<span *ngIf="tab == 'pickup_location'">Lugar de origen</span>
 			<!-- <span *ngIf="tab == 'drop_location'">{{'drop_location' | translate}}</span> -->
 			<span *ngIf="tab == 'drop_location'">Lugar de entrega</span>
-			<span *ngIf="tab == 'food_info'">{{'food_info' | translate}}</span>
+			<span *ngIf="tab == 'courier_info'">{{'courier_info' | translate}}</span>
 			<span *ngIf="tab == 'confirm'">{{'confirm_info' | translate}}</span>
 		</ion-title>
 	</ion-toolbar>
@@ -18,7 +19,7 @@
 		<ion-segment [(ngModel)]="tab" scrollable lines="none" mode="md">
 			<ion-segment-button value="pickup_location">
 				<h2>
-					<ion-icon class="zmdi zmdi-pizza"></ion-icon>
+					<ion-icon class="zmdi zmdi-pin"></ion-icon>
 				</h2>
 			</ion-segment-button>
 			<ion-segment-button value="drop_location">
@@ -26,9 +27,9 @@
 					<ion-icon class="zmdi zmdi-navigation"></ion-icon>
 				</h2>
 			</ion-segment-button>
-			<ion-segment-button value="food_info">
+			<ion-segment-button value="courier_info">
 				<h2>
-					<ion-icon class="zmdi zmdi-cutlery"></ion-icon>
+					<ion-icon class="zmdi zmdi-mall"></ion-icon>
 				</h2>
 			</ion-segment-button>
 			<ion-segment-button value="confirm">
@@ -40,71 +41,55 @@
 	</div>
 
 
-
 	<!--	 Tab Content start -->
 	<div class="tab_container" [ngSwitch]="tab">
 
 		<!--	Pickup Location section start -->
-		<div class="content pickup_location" *ngSwitchCase="'pickup_location'">
+		<div class="content" *ngSwitchCase="'pickup_location'">
 			<div class="map">
 				<img src="assets/images/map.png">
-
-				<div class="restaurant_location" style="top: 20%;left: 30%" (click)="toggleFab()">
-					<img src="assets/images/resturent_location_icon.png">
-				</div>
-				<div class="restaurant_location" style="top: 50%;left: 81%" (click)="toggleFab()">
-					<img src="assets/images/resturent_location_icon.png">
-				</div>
-				<div class="restaurant_location" style="top: 43%;left: 90%" (click)="toggleFab()">
-					<img src="assets/images/resturent_location_icon.png">
-				</div>
-				<div class="restaurant_location" style="top: 29%;left: 30%" (click)="toggleFab()">
-					<img src="assets/images/resturent_location_icon.png">
-				</div>
-				<div class="restaurant_location" style="top: 39%;left: 44%" (click)="toggleFab()">
-					<img src="assets/images/resturent_location_icon.png">
-				</div>
-				<div class="restaurant_location" style="top: 43%;left: 75%" (click)="toggleFab()">
-					<img src="assets/images/resturent_location_icon.png">
-				</div>
-				<div class="restaurant_location" style="top: 54%;left: 19%" (click)="toggleFab()">
-					<img src="assets/images/resturent_location_icon.png">
-				</div>
-				<div class="restaurant_location" style="top: 66%;left: 51%" (click)="toggleFab()">
-					<img src="assets/images/resturent_location_icon.png">
-				</div>
-				<div class="restaurant_location" style="top: 76%;left: 65%" (click)="toggleFab()">
-					<img src="assets/images/resturent_location_icon.png">
-				</div>
-				<div class="restaurant_location" style="top: 85%;left: 18%" (click)="toggleFab()">
-					<img src="assets/images/resturent_location_icon.png">
-				</div>
-
 			</div>
 
-			<div class="your_location" style="top: 51%; left: 40%;">
+			<div class="your_location" style="top: 68%; left: 40%;">
 				<ion-icon class="zmdi zmdi-circle"></ion-icon>
 			</div>
 			<div class="search_box d-flex item_shadow">
-				<ion-icon class="zmdi zmdi-pizza ion-text-start"></ion-icon>
-				<ion-searchbar class="ion-no-padding" clear-icon="undefined" searchIcon="hide" placeholder="{{'search_restaurant' | translate}}"></ion-searchbar>
+				<ion-icon class="zmdi zmdi-pin ion-text-start"></ion-icon>
+				<ion-searchbar class="ion-no-padding" clear-icon="undefined" searchIcon="hide" placeholder="{{'enter_pickup_location' | translate}}"></ion-searchbar>
 			</div>
 
 
 			<div class="search_option">
 				<ion-card class="item_shadow">
+					<h2>{{'saved_addresses' | translate}}</h2>
+					<h3 class="d-flex" (click)="toggleFab()">
+						<ion-icon class="zmdi zmdi-home"></ion-icon>
+						Home
+					</h3>
+					<h3 class="d-flex" (click)="toggleFab()">
+						<ion-icon class="zmdi zmdi-city"></ion-icon>
+						Office
+					</h3>
+					<h3 class="d-flex" (click)="toggleFab()">
+						<ion-icon class="zmdi zmdi-city-alt"></ion-icon>
+						Other
+					</h3>
+				</ion-card>
+
+
+				<ion-card class="item_shadow">
 					<h2>{{'recent_searches' | translate}}</h2>
 					<h3 class="d-flex" (click)="toggleFab()">
 						<ion-icon class="zmdi zmdi-time-restore"></ion-icon>
-						Silver Green Restaurant
+						City Centerl
 					</h3>
 					<h3 class="d-flex" (click)="toggleFab()">
 						<ion-icon class="zmdi zmdi-time-restore"></ion-icon>
-						Global china restaurant
+						Walmart Campus
 					</h3>
 					<h3 class="d-flex" (click)="toggleFab()">
 						<ion-icon class="zmdi zmdi-time-restore"></ion-icon>
-						China restaurant
+						Golden Point
 					</h3>
 
 				</ion-card>
@@ -116,12 +101,17 @@
 						<p>128 Mott St, New York, NY 10013, <br> United States</p>
 					</div>
 					<ion-item lines="none">
-						<ion-icon class="zmdi zmdi-pizza ion-text-start" slot="start"></ion-icon>
-						<ion-input type="text" value="Silver Green Restaurant" readonly></ion-input>
+						<ion-icon class="zmdi zmdi-pin-assistant ion-text-start" slot="start"></ion-icon>
+						<ion-input type="text" value="" placeholder="{{'enter_landmark' | translate}}"></ion-input>
 					</ion-item>
 					<ion-item lines="none">
-						<ion-icon class="zmdi zmdi-phone" slot="start"></ion-icon>
-						<ion-input type="name" value="987 7654 321" readonly></ion-input>
+						<ion-icon class="zmdi zmdi-account" slot="start"></ion-icon>
+						<ion-input type="name" value="" placeholder="{{'name_of_person' | translate}}"></ion-input>
+						<ion-icon class="zmdi zmdi-accounts-list-alt ion-text-end" slot="end"></ion-icon>
+					</ion-item>
+					<ion-item lines="none">
+						<ion-icon class="zmdi zmdi-pin-assistant ion-text-start" slot="start"></ion-icon>
+						<ion-input type="number" value="" placeholder="{{'contact_number' | translate}}"></ion-input>
 					</ion-item>
 				</ion-list>
 				<div class="btn_container d-flex">
@@ -215,65 +205,96 @@
 		<!--	Drop Location section end -->
 
 
-		<!-- Food Info section start -->
-		<div class="content food_info" *ngSwitchCase="'food_info'">
+		<!-- Courier Info section start -->
+		<div class="content courier_info" *ngSwitchCase="'courier_info'">
 			<ion-list lines="none">
-				<ion-card class="form add_items">
-					<h2>{{'add_food_items_quantity' | translate}}</h2>
-					<ion-item lines="none">
-						<div class="item_inner d-flex">
-							<ion-icon class="zmdi zmdi-cutlery ion-text-start" slot="start"></ion-icon>
-							<ion-input type="name" placeholder="{{'add_item' | translate}}"></ion-input>
-							<ion-input type="number" class="ion-text-center end qnt" placeholder="{{'qnt' | translate}}"></ion-input>
-						</div>
-					</ion-item>
-					<ion-item lines="none">
-						<div class="item_inner d-flex">
-							<ion-icon class="zmdi zmdi-cutlery ion-text-start" slot="start"></ion-icon>
-							<ion-input type="name" placeholder="{{'add_item' | translate}}"></ion-input>
-							<ion-input type="number" class="ion-text-center end qnt" placeholder="{{'qnt' | translate}}"></ion-input>
-						</div>
-					</ion-item>
-					<ion-item lines="none">
-						<div class="item_inner d-flex">
-							<ion-icon class="zmdi zmdi-cutlery ion-text-start" slot="start"></ion-icon>
-							<ion-input type="name" placeholder="{{'add_item' | translate}}"></ion-input>
-							<ion-input type="number" class="ion-text-center end qnt" placeholder="{{'qnt' | translate}}"></ion-input>
-						</div>
-					</ion-item>
-					<h3>+ {{'add_more' | translate}}</h3>
+				<ion-card class="courier_type">
+					<h2>{{'courier_type' | translate}}</h2>
+					<ion-radio-group value="biff">
+						<ion-row>
+							<ion-col size="4">
+								<ion-item>
+									<ion-label>{{'envelope' | translate}}</ion-label>
+									<ion-radio slot="start" value="envelope"></ion-radio>
+								</ion-item>
+							</ion-col>
+							<ion-col size="4">
+								<ion-item>
+									<ion-label>{{'box_pack' | translate}}</ion-label>
+									<ion-radio slot="start" value="box_pack"></ion-radio>
+								</ion-item>
+							</ion-col>
+							<ion-col size="4">
+								<ion-item>
+									<ion-label>{{'other' | translate}}</ion-label>
+									<ion-radio slot="start" value="other"></ion-radio>
+								</ion-item>
+							</ion-col>
+						</ion-row>
+					</ion-radio-group>
+				</ion-card>
+
+				<ion-card class="height_width_lenght">
+					<ion-row class="ion-text-center">
+						<ion-col size="4">
+							<div class="text_box" (click)="height_weight_lenght()">
+								<h3 class="d-flex">
+									<ion-icon class="zmdi zmdi-long-arrow-up ion-text-start"></ion-icon>
+									{{'height' | translate}}
+								</h3>
+								<h2>60 cm</h2>
+							</div>
+						</ion-col>
+						<ion-col size="4">
+							<div class="text_box" (click)="height_weight_lenght()">
+								<h3 class="d-flex">
+									<ion-icon class="zmdi zmdi-long-arrow-right ion-text-start"></ion-icon>
+									{{'width' | translate}}
+								</h3>
+								<h2>75 cm</h2>
+							</div>
+						</ion-col>
+						<ion-col size="4">
+							<div class="text_box" (click)="height_weight_lenght()">
+								<h3 class="d-flex">
+									<ion-icon class="zmdi zmdi-arrow-right-top ion-text-start"></ion-icon>
+									{{'lenght' | translate}}
+								</h3>
+								<h2>124 cm</h2>
+							</div>
+						</ion-col>
+					</ion-row>
+				</ion-card>
+
+
+				<ion-card class="weight_range">
+					<h2>{{'weight' | translate}}?</h2>
+					<ion-range mode="md" min="-200" max="200"></ion-range>
+					<h3 class="d-flex">0 Kg <span class="end">1000 Kg</span></h3>
+				</ion-card>
+
+				<ion-card class="frangible d-flex">
+					<h2>{{'frangible' | translate}}?</h2>
+					<div class="end toggle_box">
+						<span>{{'yes' | translate}}</span>
+						<ion-toggle mode="ios" checked></ion-toggle>
+					</div>
 				</ion-card>
 
 				<ion-card class="form">
-					<h2>{{'additionla_information' | translate}}</h2>
+					<h2>{{'courier_detail' | translate}}</h2>
 					<ion-item lines="none">
-						<ion-textarea rows="3" placeholder="{{'enter_additionla_information' | translate}}"></ion-textarea>
+						<ion-textarea rows="3" placeholder="{{'enter_courier_info' | translate}}"></ion-textarea>
 					</ion-item>
 				</ion-card>
 
 				<ion-card class="delivery_mode">
 					<h2>{{'delivery_mode' | translate}}</h2>
-					<h3 class="d-flex" (click)="deliverymode()">Economy Delivery
+					<h3 class="d-flex" (click)="deliverymode()">Entrega Económica
 						<span class="end">
 							$8.60
 							<ion-icon class="zmdi zmdi-caret-down ion-text-end"></ion-icon>
 						</span>
-					</h3>
-				</ion-card>
-
-
-				<ion-card class="delivery_info">
-					<h3 class="d-flex">
-						<ion-icon class="zmdi zmdi-assignment-alert ion-text-start"></ion-icon>
-						Will delivery which foods are available at restaurant.
-					</h3>
-					<h3 class="d-flex">
-						<ion-icon class="zmdi zmdi-assignment-alert ion-text-start"></ion-icon>
-						Delivery man will call to confirm total bill amount.
-					</h3>
-					<h3 class="d-flex">
-						<ion-icon class="zmdi zmdi-assignment-alert ion-text-start"></ion-icon>
-						Delivery Charges are non-refundable.
 					</h3>
 				</ion-card>
 			</ion-list>
@@ -284,7 +305,7 @@
 				</ion-button>
 			</div>
 		</div>
-		<!--  Food Info section end -->
+		<!-- Courier Info section end -->
 
 
 		<!-- Confirm Info section start -->
@@ -292,10 +313,10 @@
 			<ion-list>
 				<ion-card class="address_container">
 					<div class="address d-flex">
-						<ion-icon class="zmdi zmdi-pizza ion-text-start"></ion-icon>
+						<ion-icon class="zmdi zmdi-pin ion-text-start"></ion-icon>
 						<div class="text">
-							<h2>{{'restaurant' | translate}}</h2>
-							<h3> Silver Green Restaurant</h3>
+							<h2>Walmart</h2>
+							<h3>Emili Williamson</h3>
 							<p>128 Mott St, New York, NY 10013, United States</p>
 						</div>
 					</div>
@@ -321,34 +342,37 @@
 
 				<ion-card class="info">
 					<ion-row>
-						<ion-col size="12">
-							<h2 class="d-flex">{{'food_items' | translate}} <span class="end">{{'qnt' | translate}}</span></h2>
-							<h3 class="d-flex">
-								<span class="item_name">Veg Sandwich</span>
-								<span class="end ion-text-end">1</span>
-							</h3>
-							<h3 class="d-flex">
-								<span class="item_name">FarmVilla Pizza</span>
-								<span class="end ion-text-end">2</span>
-							</h3>
-							<h3 class="d-flex">
-								<span class="item_name">Chicken Soup</span>
-								<span class="end ion-text-end">1</span>
-							</h3>
+						<ion-col size="8">
+							<h2>{{'courier_type' | translate}}</h2>
+							<h3>Box Courier</h3>
+						</ion-col>
+						<ion-col size="4">
+							<h2>{{'frangible' | translate}}</h2>
+							<h3>Yes</h3>
 						</ion-col>
 					</ion-row>
- 
+
+					<ion-row>
+						<ion-col size="8">
+							<h2>{{'height_weight_length' | translate}}</h2>
+							<h3>60 x 75 x 124 (cm)</h3>
+						</ion-col>
+						<ion-col size="4">
+							<h2>{{'weight' | translate}}</h2>
+							<h3>10 kg</h3>
+						</ion-col>
+					</ion-row>
 					<ion-row>
 						<ion-col size="12">
-							<h2>{{'additionla_information' | translate}}</h2>
-							<h3> Make Less spicy with less gravy.</h3>
+							<h2>{{'courier_infp' | translate}}</h2>
+							<h3>Birthday Gift containing flower Vaas.<br> Carry carefully as it is frangible.</h3>
 						</ion-col>
 					</ion-row>
 				</ion-card>
 				<ion-card class="deliveryMode">
 					<h2>{{'delivery_mode' | translate}}</h2>
-					<h3 class="d-flex">Economy Delivery <span class="end">$8.60</span></h3>
-					<p>Usually delivery in 1 hour.</p>
+					<h3 class="d-flex">Entrega Económica <span class="end">$8.60</span></h3>
+					<p>Usually takes 2-3 days to delivery.</p>
 				</ion-card>
 			</ion-list>
 			<div class="btn_container d-flex">

@@ -9,7 +9,10 @@ ion-header {
 ion-content {
 	border-radius: 0px 0 0 0;
 	--background: transparent;
+
 }
+
+
 
 .tab_btn_container {
 	ion-segment {
@@ -118,6 +121,10 @@ ion-content {
 	}
 }
 
+.content {
+	overflow-y: auto;
+}
+
 .tab_container {
 	border-radius: 33px 0 0 0;
 	overflow: hidden;
@@ -127,10 +134,6 @@ ion-content {
 	margin-right: 0;
 	margin-left: auto;
 	position: relative;
-
-	.content {
-		overflow-y: auto;
-	}
 
 	.map {
 		position: absolute;
@@ -142,12 +145,6 @@ ion-content {
 		img {
 			width: 100%;
 			height: 100%;
-		}
-
-		.restaurant_location {
-			position: absolute;
-			position: absolute;
-			width: 28px;
 		}
 
 	}
@@ -337,22 +334,7 @@ ion-content {
 		}
 	}
 
-	.content.pickup_location {
-		.form {
-
-			ion-list ion-item ion-input {
-				color: var(--text-dark);
-				font-weight: 400 !important;
-			}
-
-			.btn_container {
-				padding: 31px 13px;
-				padding-top: 50px;
-			}
-		}
-	}
-
-	.content.food_info {
+	.content.courier_info {
 		background: var(--bg-color);
 		height: 100%;
 
@@ -378,6 +360,168 @@ ion-content {
 				padding-bottom: 15px;
 			}
 
+			&.courier_type {
+				ion-row {
+					margin: 0 -5px;
+
+					ion-col {
+						padding: 0 5px;
+
+						ion-item {
+							padding: 0px;
+							border-radius: 50px;
+							--inner-padding-end: 0px;
+							--inner-min-height: unset !important;
+							--padding-start: 0;
+							--highligh-color-focused: var(--transparent) !important;
+							--background: var(--transparent);
+							background: var(--bg-color);
+							--min-height: 40px;
+							border: 1px solid #ccc !important;
+
+							ion-label {
+								position: relative;
+								margin: 0;
+								color: var(--text-light);
+								font-size: .82rem !important;
+								font-weight: 400 !important;
+								text-align: center;
+							}
+
+							ion-radio {
+								position: absolute;
+								z-index: 999;
+								width: 100%;
+								height: 100%;
+								margin: 0;
+								--color: var(--transparent) !important;
+								--color-checked: var(--transparent) !important;
+							}
+
+							&::before {
+								content: '';
+								position: absolute;
+								top: 0;
+								left: 0;
+								bottom: 0;
+								right: 0;
+								width: 0;
+								height: 0;
+								margin: auto;
+								background: var(--primary);
+								transition: all .3s;
+								border-radius: 50px;
+							}
+
+							&.item-radio-checked {
+								border-color: var(--transparent) !important;
+
+								&::before {
+									width: 100%;
+									height: 100%;
+								}
+
+								ion-label {
+									color: var(--white);
+								}
+
+							}
+						}
+					}
+				}
+			}
+
+			&.height_width_lenght {
+				background: var(--transparent) !important;
+				padding: 0;
+
+				ion-row {
+					margin: 0 -2.5px;
+
+					ion-col {
+						padding: 0 2.5px;
+
+						.text_box {
+							padding: 16px 13px 16px 13px;
+							background: var(--white);
+							width: 100%;
+
+							h3 {
+								color: var(--text-light);
+								font-size: 0.81rem;
+								font-weight: 400;
+								width: fit-content;
+								margin: 0 auto;
+								padding-bottom: 4px;
+
+								ion-icon {
+									color: var(--primary);
+									min-width: 20px;
+								}
+							}
+
+							h2 {
+								padding: 0;
+							}
+						}
+					}
+				}
+			}
+
+			&.frangible {
+				h2 {
+					padding: 0 !important;
+				}
+
+				.toggle_box {
+					display: flex;
+					align-items: center;
+
+					span {
+						color: var(--primary);
+						display: block;
+						height: fit-content;
+						font-size: 1rem;
+						margin: 0 13px;
+					}
+				}
+
+				ion-toggle {
+					--background: var(--bg-color);
+					--background-checked: var(--bg-color);
+					--handle-background-checked: var(--primary);
+				}
+			}
+
+			&.weight_range {
+				padding-left: 0;
+				padding-right: 0;
+
+				h2 {
+					margin: 0 auto;
+					width: calc(100% - 25px);
+					padding-bottom: 0;
+				}
+
+				h3 {
+					color: var(--text-light);
+					font-size: .75rem;
+					width: calc(100% - 25px);
+					margin: 0 auto;
+					font-weight: 400;
+				}
+
+				ion-range {
+					padding-top: 0;
+					padding-bottom: 0;
+					--bar-background: var(--text-light);
+					--bar-background-active: var(--text-light);
+					--knob-background: var(--primary);
+				}
+			}
+
+
+
 			&.form {
 				position: unset !important;
 				height: auto !important;
@@ -385,15 +529,11 @@ ion-content {
 				ion-item {
 					background: var(--bg-color);
 					border: 1px solid #ccc !important;
+					border-radius: 18px;
 					width: calc(100% - 0px);
 					margin: 0 auto;
 					margin-bottom: 0;
-					border-radius: 18px;
 					padding: 11px 14px;
-
-					ion-icon {
-						font-size: 1rem;
-					}
 
 					ion-icon {
 						margin: 0;
@@ -407,51 +547,6 @@ ion-content {
 						font-size: .82rem !important;
 						font-weight: 500 !important;
 						margin: 0 !important;
-						min-width: unset !important;
-
-						&.qnt {
-							max-width: 60px;
-						}
-					}
-
-
-				}
-
-				h3 {
-					margin: 0;
-					color: var(--primary);
-					font-size: 1.1rem;
-					font-weight: 500;
-					letter-spacing: .5px;
-					padding: 8px 19px 0 19px;
-				}
-
-				&.add_items {
-					ion-item {
-						border-radius: 20px;
-						padding: 10px 14px;
-						margin-bottom: 10px;
-
-						ion-input {
-							font-size: .82rem !important;
-							font-weight: 500 !important;
-							margin: 0 !important;
-							min-width: unset !important;
-
-							&.qnt {
-								max-width: 60px;
-							}
-						}
-
-						&::after {
-							content: '';
-							position: absolute;
-							right: 74px;
-							top: 0;
-							width: 1px;
-							height: 100%;
-							background: #ccc;
-						}
 					}
 				}
 			}
@@ -483,28 +578,11 @@ ion-content {
 				}
 			}
 
-			&.delivery_info {
-				background: var(--transparent);
-
-				h3 {
-					margin: 0;
-					color: var(--text-black);
-					align-items: flex-start;
-					font-size: .7rem;
-					padding-bottom: 5px;
-
-					ion-icon {
-						color: var(--primary);
-						min-width: 25px;
-						font-size: 1rem;
-					}
-				}
-			}
-
 		}
 
 		.btn_container {
 			padding: 7px 13px;
+			padding-top: 31px;
 
 			.button.btn {
 				font-size: 1rem;
@@ -633,7 +711,7 @@ ion-content {
 					h3 {
 						margin: 0;
 						font-size: 1rem;
-						font-weight: 600;
+						font-weight: 500;
 						color: var(--text-black);
 
 						span {
@@ -664,9 +742,8 @@ ion-content {
 							h3 {
 								margin: 0;
 								font-size: 1rem;
-								font-weight: 600;
+								font-weight: 500;
 								color: var(--text-black);
-								line-height: 26px;
 							}
 						}
 					}
@@ -684,7 +761,7 @@ ion-content {
 					h3 {
 						margin: 0;
 						font-size: 1rem;
-						font-weight: 600;
+						font-weight: 500;
 						color: var(--text-black);
 
 						span {
